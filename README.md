@@ -1,3 +1,5 @@
+![Menu do Sistema](./screenshot.png)
+
 # 📦 Caixinhas – Gestão Financeira Inteligente
 
 🔗 **Acesse online:** https://contascaixinhas.netlify.app/
