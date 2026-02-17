@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caixinhas</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <h1>📦 Caixinhas</h1>
+</header>
+
+<nav>
+  <button onclick="mostrar('home')">🏠 Home</button>
+  <button onclick="toggleTema()">🌓 Tema</button>
+  <button onclick="mostrar('config')">⚙️ Config</button>
+</nav>
+
+<main>
+
+<section id="home">
+
+  <div class="card freedom-card">
+    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+      <small>🗽 Liberdade (Este Mês)</small>
+      <small id="freedom-text">0%</small>
+    </div>
+    <div class="barra">
+      <div id="freedom-bar" class="barra-interna" style="width:0%; background:#00e676"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:5px;">
+      <small id="freedom-acumulado">R$ 0,00</small>
+      <small id="freedom-meta">Meta: R$ 0,00</small>
+    </div>
+  </div>
+
+  <div class="card" id="painel-entrada">
+    <label>💵 Valor Disponível</label>
+    <input id="entrada" type="number" placeholder="R$ 0,00" inputmode="decimal">
+    <button onclick="distribuir()">Distribuir Valor</button>
+    <button onclick="desfazerUltima()" class="btn-secundario">⏪ Desfazer última</button>
+    
+    <div id="avisoSobra" class="msg-sobra" hidden></div>
+  </div>
+
+  <section id="caixas"></section>
+
+  <div class="historico-container">
+    <h3>📜 Últimas Entradas</h3>
+    <ul id="listaHistoricoHome"></ul>
+  </div>
+
+</section>
+
+<section id="config" hidden>
+
+  <div class="card">
+    <h3>Ferramentas</h3>
+    <button onclick="window.print()" class="btn-print">🖨️ Gerar Relatório PDF</button>
+  </div>
+
+  <div class="card">
+    <h3>Gerenciar Caixinhas</h3>
+    <div id="listaConfigCaixas"></div>
+    <button onclick="novaCaixa()" class="btn-add">➕ Nova caixinha</button>
+  </div>
+
+  <div class="card perigo">
+    <button onclick="resetarTudo()" style="background:#e53935">
+      🔥 Resetar TUDO (Apaga dados)
+    </button>
+  </div>
+
+</section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
